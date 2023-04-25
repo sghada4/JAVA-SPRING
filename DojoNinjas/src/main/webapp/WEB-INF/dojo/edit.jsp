@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Dojos</title>
+<title>Title</title>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/main.css">
 <!-- change to match your file/naming structure -->
@@ -21,36 +21,21 @@
 <!-- change to match your file/naming structure -->
 </head>
 <body>
-	<div class="container" style="margin-top: 20px;" >
-		<a href="/dojos/new" class="btn btn-secondary">Add New</a>
-		<a href="/" class="btn btn-info">Home</a>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Name</th>
+	<div class="container">
+		<h1 style="color: green;">Edit Dojo</h1>
+		<a href="/dojos" class="btn btn-secondary">Back</a>
 
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="oneDojo" items="${allDojos}">
-					<tr>
-						<td><a href="/dojos/${oneDojo.id}"> ${oneDojo.name}</a></td>
-
-						<td>
-						<a href="/dojos/edit/${oneDojo.id}"
-							class="btn btn-secondary">Edit</a>
-							<form action="/dojos/${oneDojo.id}" method="post" style="display: inline;">
-								<input type="hidden" name="_method" value="delete"> <input
-									type="submit" value="Delete" class="btn btn-danger">
-							</form>
-						</td>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		
+		<form:form action="/dojos/${dojo.id}" method="post"
+			modelAttribute="dojo">
+			<input type="hidden" name="_method" value="put">
+			<form:errors path="*" style="color:red;" />
+			<div class="form-group mx-sm-3 mb-2">
+				<form:label path="name">Name</form:label>
+				<form:input path="name" class="form-control" />
+			</div>
+			
+			<input type="submit" value="Edit" class="btn btn-primary" />
+		</form:form>
 	</div>
 </body>
 </html>

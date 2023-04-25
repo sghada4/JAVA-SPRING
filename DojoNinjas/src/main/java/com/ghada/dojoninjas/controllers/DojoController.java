@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.ghada.dojoninjas.models.Dojo;
 import com.ghada.dojoninjas.services.DojoService;
@@ -70,4 +71,23 @@ public class DojoController {
 		
 		return "dojo/show.jsp";
 	}
+	
+	// EDIT PAGE == DISPLAY ROUTE
+		@GetMapping("/dojos/edit/{id}")
+		public String update(@PathVariable("id") Long id, Model model) {
+			Dojo dojo = dojoService.findDojo(id);
+			model.addAttribute("dojo", dojo);
+			return "dojo/edit.jsp";
+		}
+
+		// === ACTION ROUTE ===
+		@PutMapping("/dojos/{id}")
+		public String updateDojo(@Valid @ModelAttribute("dojo") Dojo dojo, BindingResult result) {
+			if (result.hasErrors()) {
+				return "dojo/edit.jsp";
+			} else {
+				dojoService.updateDojo(dojo);
+				return "redirect:/dojos";
+			}
+		}
 }
