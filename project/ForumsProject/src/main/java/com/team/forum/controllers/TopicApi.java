@@ -44,15 +44,21 @@ public class TopicApi {
 	}
 
 	// UPDATE
-
 	@PutMapping("/topics/{id}")
 	public Topic updateTopic(@PathVariable("id") Long id, @RequestBody Topic topic) {
 
 		return topicService.updateTopic(id, topic);
 	}
 
+	//DELETE
 	@DeleteMapping("/topics/{id}")
 	public void destroy(@PathVariable("id") Long id) {
 		topicService.deleteTopic(id);
+	}
+	
+	//Search By topicName
+	@PostMapping("/topics/search")
+	public List<Topic> searchTopic(@RequestBody Topic topic){
+		return topicService.searchByTopicName(topic.getTopicName());
 	}
 }

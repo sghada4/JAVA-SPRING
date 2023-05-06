@@ -44,4 +44,9 @@ public class TopicService {
 	public void deleteTopic(Long id) {
 		topicRepository.deleteById(id);
 	}
+
+	// Search by topicName
+	public List<Topic> searchByTopicName(String topicName) {
+		return topicRepository.findByTopicName(topicName);
+	}
 }

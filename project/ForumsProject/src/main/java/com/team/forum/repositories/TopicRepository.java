@@ -12,4 +12,6 @@ public interface TopicRepository extends CrudRepository<Topic, Long> {
 
 	List<Topic> findAll();
 
+	// search by topicName
+	List<Topic> findByTopicName(String topicName);
 }

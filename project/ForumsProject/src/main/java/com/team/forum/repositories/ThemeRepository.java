@@ -11,5 +11,12 @@ import com.team.forum.models.Theme;
 public interface ThemeRepository extends JpaRepository<Theme, Long> {
 
 	List<Theme> findAll();
+	
+		//List<Theme> findTop5ByOrderByRatingDesc();
+		
+		//themes order by themeName in alphabitic order
+		List<Theme> findByOrderByThemeNameAsc();
 
+		//search by themeName
+		List<Theme> findByThemeName(String themeName);
 }

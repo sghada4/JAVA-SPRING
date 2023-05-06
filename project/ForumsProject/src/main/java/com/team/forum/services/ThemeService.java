@@ -45,4 +45,14 @@ public class ThemeService {
 		themeRepository.deleteById(id);
 	}
 
+	// READ ALL themes order by themeName
+	public List<Theme> allThemesOrderedByThemeName() {
+		return themeRepository.findByOrderByThemeNameAsc();
+	}
+
+	// Search by themeName
+	public List<Theme> searchByThemeName(String themeName) {
+		return themeRepository.findByThemeName(themeName);
+	}
+
 }
