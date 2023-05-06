@@ -1,0 +1,50 @@
+<main id="main">
+  <section id="blog" class="blog">
+    <div class="container" data-aos="fade-up" style="margin-left: 350px; margin-top: 50px;">
+      <div class="row g-5">
+        <div class="col-lg-8">
+          <div class="comments">
+            <div class="reply-form">
+              <h4>Create Theme</h4>
+              <form (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col form-group">
+                    <input
+                      type="text"
+                      id="themeName"
+                      [(ngModel)]="theme.themeName"
+                      name="themeName"
+                      placeholder="Theme Name" class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <input
+                      type="text"
+                      id="image"
+                      [(ngModel)]="theme.image"
+                      name="image"
+                      placeholder="Image" class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <textarea
+                      id="description"
+                      [(ngModel)]="theme.description"
+                      name="description"
+                      placeholder="Description" class="form-control"
+                    ></textarea>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
