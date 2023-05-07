@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { UpdateThemeComponent } from './update-theme/update-theme.component';
 import { ThemeDetailsComponent } from './theme-details/theme-details.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { HomeComponent } from './home/home.component';
     CreateThemeComponent,
     UpdateThemeComponent,
     ThemeDetailsComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

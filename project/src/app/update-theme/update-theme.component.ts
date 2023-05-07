@@ -11,12 +11,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateThemeComponent implements OnInit{
   theme: Theme = new Theme();
   id: number; 
-
+  themes: Theme[];
   constructor(private themeService: ThemeService, private route: ActivatedRoute, private router: Router){
 
   }
 
   ngOnInit(): void {
+    this.getThemes();
     this.id = this.route.snapshot.params['id'];
     this.themeService.getThemeById(this.id).subscribe(data=>{
       this.theme = data;
@@ -34,5 +35,11 @@ export class UpdateThemeComponent implements OnInit{
 
   goToThemeList(){
     this.router.navigate(['/themes']);
+  }
+
+  private getThemes() {
+    this.themeService.getThemesList().subscribe((data) => {
+      this.themes = data;
+    });
   }
 }

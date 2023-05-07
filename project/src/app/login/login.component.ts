@@ -4,14 +4,11 @@ import { ThemeService } from '../theme.service';
 import { Route, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create-theme',
-  templateUrl: './create-theme.component.html',
-  styleUrls: ['./create-theme.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class CreateThemeComponent implements OnInit {
-  
-  theme: Theme = new Theme();
-
+export class LoginComponent implements OnInit {
   themes: Theme[];
 
   constructor(private themeService: ThemeService, private router: Router) {}
@@ -30,20 +27,4 @@ export class CreateThemeComponent implements OnInit {
     this.router.navigate(['themes/show', id]);
   }
 
-  saveTheme(){
-    this.themeService.createTheme(this.theme).subscribe(data =>{
-      console.log(data);
-      
-      this.goToThemeList();
-    }, 
-    error => console.log(error));
-  }
-
-  goToThemeList(){
-    this.router.navigate(['/themes']);
-  }
-
-  onSubmit(){
-    this.saveTheme();
-  }
 }
