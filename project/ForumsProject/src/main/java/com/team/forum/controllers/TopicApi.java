@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.team.forum.models.Post;
+import com.team.forum.models.Theme;
 import com.team.forum.models.Topic;
 import com.team.forum.services.TopicService;
 
@@ -43,6 +45,14 @@ public class TopicApi {
 		return topicService.findTopic(id);
 	}
 
+	// READ ALL THEMES TOPICS
+	@GetMapping("/topics/posts/{id}")
+	public List<Post> showTopicPosts(@PathVariable("id") Long id) {
+
+		Topic topic = topicService.findTopic(id);
+		return topic.getPosts();
+	}
+
 	// UPDATE
 	@PutMapping("/topics/{id}")
 	public Topic updateTopic(@PathVariable("id") Long id, @RequestBody Topic topic) {
@@ -50,15 +60,15 @@ public class TopicApi {
 		return topicService.updateTopic(id, topic);
 	}
 
-	//DELETE
+	// DELETE
 	@DeleteMapping("/topics/{id}")
 	public void destroy(@PathVariable("id") Long id) {
 		topicService.deleteTopic(id);
 	}
-	
-	//Search By topicName
+
+	// Search By topicName
 	@PostMapping("/topics/search")
-	public List<Topic> searchTopic(@RequestBody Topic topic){
+	public List<Topic> searchTopic(@RequestBody Topic topic) {
 		return topicService.searchByTopicName(topic.getTopicName());
 	}
 }

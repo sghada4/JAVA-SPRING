@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team.forum.models.Theme;
+import com.team.forum.models.Topic;
 import com.team.forum.services.ThemeService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -61,6 +62,14 @@ public class ThemeApi {
 	@PostMapping("/themes/search")
 	public List<Theme> searchTheme(@RequestBody Theme theme) {
 		return themeService.searchByThemeName(theme.getThemeName());
+	}
+
+	// READ ALL THEMES TOPICS
+	@GetMapping("/themes/topics/{id}")
+	public List<Topic> showThemeTopics(@PathVariable("id") Long id) {
+
+		Theme theme = themeService.findTheme(id);
+		return theme.getTopics();
 	}
 
 }

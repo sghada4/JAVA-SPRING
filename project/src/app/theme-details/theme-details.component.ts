@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Theme } from '../theme';
 import { ActivatedRoute } from '@angular/router';
 import { ThemeService } from '../theme.service';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-theme-details',
@@ -13,8 +14,10 @@ export class ThemeDetailsComponent implements OnInit {
   id: number;
   theme: Theme;
   themes: Theme[];
+  userId = this.sessionStorage.retrieve('userId');
 
-  constructor(private route: ActivatedRoute, private themeService: ThemeService){
+  constructor(private route: ActivatedRoute, private themeService: ThemeService,
+    private sessionStorage: SessionStorageService){
 
   }
 
@@ -33,6 +36,10 @@ export class ThemeDetailsComponent implements OnInit {
     this.themeService.getThemesList().subscribe((data) => {
       this.themes = data;
     });
+  }
+
+  logout(){
+    this.sessionStorage.clear();
   }
 
 }

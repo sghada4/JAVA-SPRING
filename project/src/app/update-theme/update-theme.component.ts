@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../theme.service';
 import { Theme } from '../theme';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-update-theme',
@@ -11,8 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateThemeComponent implements OnInit{
   theme: Theme = new Theme();
   id: number; 
+  userId = this.sessionStorage.retrieve('userId');
+
   themes: Theme[];
-  constructor(private themeService: ThemeService, private route: ActivatedRoute, private router: Router){
+  constructor(private themeService: ThemeService, private route: ActivatedRoute, private router: Router,
+    private sessionStorage: SessionStorageService){
 
   }
 
@@ -26,6 +30,11 @@ export class UpdateThemeComponent implements OnInit{
       
     });
   }
+
+  logout(){
+    this.sessionStorage.clear();
+  }
+
 
   onSubmit(){
     this.themeService.updateTheme(this.id, this.theme).subscribe(data =>{

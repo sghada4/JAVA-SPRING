@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -42,21 +45,37 @@ public class Topic {
 
 	// one to many
 	@OneToMany(mappedBy = "postedIn", fetch = FetchType.LAZY)
+//	@JsonIgnore
+//	@JsonIgnoreProperties({"posts"})
+//	@JsonIgnoreProperties(value="postedIn", allowSetters = true)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<Post> posts;
 
 	// many to one
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
+//	@JsonIgnore
+//	@JsonIgnoreProperties({"topicPostedBy"})
+//	@JsonIgnoreProperties(value="user_id", allowSetters = true)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private User topicPostedBy;
 
 	// many to one
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "theme_id")
+//	@JsonIgnore
+//	@JsonIgnoreProperties({"theme"})
+//	@JsonIgnoreProperties(value="theme_id", allowSetters = true)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Theme theme;
 
 	// Many to many
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "users_topics", joinColumns = @JoinColumn(name = "topic_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+//	@JsonIgnore
+//	@JsonIgnoreProperties({"joinedUsers"})
+//	@JsonIgnoreProperties(value="topic_id", allowSetters = true)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<User> joinedUsers;
 
 	// CONSTRUCTOR

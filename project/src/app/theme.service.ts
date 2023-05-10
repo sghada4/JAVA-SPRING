@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Theme } from './theme';
 import { Observable } from 'rxjs';
+import { Topic } from './topic';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class ThemeService {
   }
 
   //Create Theme
-  createTheme(theme: Theme): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`,theme);
+  createTheme(theme: Theme): Observable<Theme>{
+    return this.httpClient.post<Theme>(`${this.baseURL}`,theme);
   }
 
   //Get theme by id
@@ -26,13 +27,18 @@ export class ThemeService {
     return this.httpClient.get<Theme>(`${this.baseURL}/${id}`);
   }
 
+  //Get topics theme by id
+  getTopicsThemeById(id: number): Observable<Topic[]>{
+    return this.httpClient.get<Topic[]>(`${this.baseURL}/topics/${id}`);
+  }
+
   //UPDATE THEME
-  updateTheme(id: number, theme: Theme): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, theme);
+  updateTheme(id: number, theme: Theme): Observable<Theme>{
+    return this.httpClient.put<Theme>(`${this.baseURL}/${id}`, theme);
   }
 
   //delete Theme
-  deleteTheme(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  deleteTheme(id: number): Observable<Theme>{
+    return this.httpClient.delete<Theme>(`${this.baseURL}/${id}`);
   }
 }

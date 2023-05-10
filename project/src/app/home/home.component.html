@@ -16,7 +16,6 @@
           <li><a class="nav-link scrollto" href="#featured-services">Services</a></li>
           <li><a class="nav-link scrollto" href="#about">About Us</a></li>
           <li><a class="nav-link scrollto" href="#services">Themes</a></li>
-          <li><a href="themes/new">New Theme</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#recent-blog-posts">Best Topics</a></li>
           <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
@@ -28,8 +27,14 @@
         </form>
         <!-- <i class="bi bi-list mobile-nav-toggle d-none"></i> -->
       </nav><!-- .navbar -->
-      
-      <a class="btn-getstarted scrollto" href="/login">Login</a>
+      <div *ngIf="!userId">
+
+        <a class="btn-getstarted scrollto" href="/login">Login</a>
+      </div>
+      <div *ngIf="userId">
+
+        <a class="btn-getstarted scrollto" href="/" (click)="logout()">Logout</a>
+      </div>
 
     </div>
   </header><!-- End Header -->
@@ -203,7 +208,7 @@
           <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="400">
             <div class="team-member">
               <div class="member-img">
-                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+                <img src="assets/img/ghada.jpg" class="img-fluid" alt="">
               </div>
               <div class="member-info">
                 <div class="social">
@@ -389,6 +394,6 @@
 
   <a href="#hero-animated" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <div id="preloader"></div>
+  <!-- <div id="preloader"></div> -->
 
  

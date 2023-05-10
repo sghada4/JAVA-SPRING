@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -49,10 +52,18 @@ public class Theme {
 	// many to one
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
+//	@JsonIgnore
+//	@JsonIgnoreProperties({"themePostedBy"})
+//	@JsonIgnoreProperties(value="user_id", allowSetters = true)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private User themePostedBy;
 
 	// one to many
 	@OneToMany(mappedBy = "theme", fetch = FetchType.LAZY)
+//	@JsonIgnore
+//	@JsonIgnoreProperties({"topics"})
+//	@JsonIgnoreProperties(value="theme", allowSetters = true)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<Topic> topics;
 
 	// CONSTRUCTOR

@@ -37,7 +37,14 @@
     </nav>
     <!-- .navbar -->
 
-    <a class="btn-getstarted scrollto" href="/login">Login</a>
+    <div *ngIf="!userId">
+
+      <a class="btn-getstarted scrollto" href="/login">Login</a>
+    </div>
+    <div *ngIf="userId">
+
+      <a class="btn-getstarted scrollto" href="/" (click)="logout()">Logout</a>
+    </div>
   </div>
 </header>
 <!-- End Header -->
@@ -165,4 +172,4 @@
 </footer><!-- End Footer -->
 
 
-<div id="preloader"></div>
+<!-- <div id="preloader"></div> -->

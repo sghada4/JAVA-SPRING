@@ -1,5 +1,7 @@
 package com.team.forum.controllers;
 
+import java.util.List;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -80,6 +82,12 @@ public class UserApi {
 	public User showUser(@PathVariable("id") Long id) {
 
 		return userService.findUserById(id);
+	}
+	
+	@GetMapping("/users")
+	public List<User> allUsers() {
+
+		return userService.allUsers();
 	}
 
 }

@@ -14,7 +14,6 @@
         <li><a class="nav-link scrollto" href="#featured-services">Services</a></li>
         <li><a class="nav-link scrollto" href="#about">About Us</a></li>
         <li><a class="nav-link scrollto" href="#services">Themes</a></li>
-        <li><a href="themes/new">New Theme</a></li>
         <li><a class="nav-link scrollto" href="#team">Team</a></li>
         <li><a class="nav-link scrollto" href="#recent-blog-posts">Best Topics</a></li>
         <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
@@ -27,7 +26,14 @@
       <!-- <i class="bi bi-list mobile-nav-toggle d-none"></i> -->
     </nav><!-- .navbar -->
     
-    <a class="btn-getstarted scrollto" href="/login">Login</a>
+    <div *ngIf="!userId">
+
+      <a class="btn-getstarted scrollto" href="/login">Login</a>
+    </div>
+    <div *ngIf="userId">
+
+      <a class="btn-getstarted scrollto" href="/" (click)="logout()">Logout</a>
+    </div>
 
   </div>
 </header><!-- End Header -->
@@ -47,7 +53,7 @@
             <div class="post-author d-flex align-items-center">
               <img src="${Theme.image }" class="rounded-circle flex-shrink-0" alt="">
               <div>
-                <h4>Theme.themeName : Topic.Name</h4>
+                <h4>{{topic.topicName}}</h4>
                 <div class="social-links">
                   <a href="https://twitters.com/#"><i class="bi bi-twitter"></i></a>
                   <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
@@ -61,71 +67,30 @@
 
             <div class="comments">
 
-              <h4 class="comments-count">5 Posts</h4>
+              <h4 class="comments-count">{{posts.length}} Posts</h4>
 
-              <div id="comment-1" class="comment">
+              <div id="comment-1" class="comment" *ngFor="let post of posts">
                 <div class="d-flex">
                   <div class="comment-img"><img src="../../../assets/img/blog/comments-1.jpg" alt=""></div>
                   <div>
                     <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
                     <time datetime="2020-01-01">01 Jan,2022</time>
                     <p>
-                      Content of the Post
+                      {{post.content}}
                     </p>
                   </div>
                 </div>
               </div><!-- End comment #1 -->
 
-              <div id="comment-2" class="comment">
-                <div class="d-flex">
-                  <div class="comment-img"><img src="../../../assets/img/blog/comments-2.jpg" alt=""></div>
-                  <div>
-                    <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                    <time datetime="2020-01-01">01 Jan,2022</time>
-                    <p>
-                      Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut beatae.
-                    </p>
-                  </div>
-                </div>
-
-              </div><!-- End comment #2-->
-
-              <div id="comment-3" class="comment">
-                <div class="d-flex">
-                  <div class="comment-img"><img src="../../../assets/img/blog/comments-5.jpg" alt=""></div>
-                  <div>
-                    <h5><a href="">Nolan Davidson</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                    <time datetime="2020-01-01">01 Jan,2022</time>
-                    <p>
-                      Distinctio nesciunt rerum reprehenderit sed. Iste omnis eius repellendus quia nihil ut accusantium tempore. Nesciunt expedita id dolor exercitationem aspernatur aut quam ut. Voluptatem est accusamus iste at.
-                      Non aut et et esse qui sit modi neque. Exercitationem et eos aspernatur. Ea est consequuntur officia beatae ea aut eos soluta. Non qui dolorum voluptatibus et optio veniam. Quam officia sit nostrum dolorem.
-                    </p>
-                  </div>
-                </div>
-
-              </div><!-- End comment #3 -->
-
-              <div id="comment-4" class="comment">
-                <div class="d-flex">
-                  <div class="comment-img"><img src="../../../assets/img/blog/comments-6.jpg" alt=""></div>
-                  <div>
-                    <h5><a href="">Kay Duggan</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                    <time datetime="2020-01-01">01 Jan,2022</time>
-                    <p>
-                      Dolorem atque aut. Omnis doloremque blanditiis quia eum porro quis ut velit tempore. Cumque sed quia ut maxime. Est ad aut cum. Ut exercitationem non in fugiat.
-                    </p>
-                  </div>
-                </div>
-
-              </div><!-- End comment #4 -->
+              
 
               <div class="reply-form">
 
                 <h4>Leave a Post</h4>
-                <form action="">
+                <form #postForm="ngForm" (ngSubmit)="savePost()">
                   <div class="row">
                     <div class="col form-group">
-                      <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                      <textarea id="content" name="content" class="form-control" placeholder="Your Comment*" [(ngModel)]="post.content"></textarea>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Post</button>
@@ -262,10 +227,10 @@
   
             <div class="col-lg-3 col-md-6 footer-links">
               <h4>Our Themes</h4>
-              <!-- <ul *ngFor="let theme of themes"> -->
-                <!-- <li><i class="bi bi-chevron-right"></i> <a href="#services">{{theme.themeName}}</a></li> -->
+              <ul *ngFor="let theme of themes">
+                <li><i class="bi bi-chevron-right"></i> <a href="#services">{{theme.themeName}}</a></li>
                 
-              <!-- </ul> -->
+              </ul>
             </div>
   
             

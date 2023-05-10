@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Theme } from '../theme';
 import { ThemeService } from '../theme.service';
 import { Router } from '@angular/router';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-theme-list',
@@ -10,8 +11,10 @@ import { Router } from '@angular/router';
 })
 export class ThemeListComponent implements OnInit {
   themes: Theme[];
+  userId = this.sessionStorage.retrieve('userId');
 
-  constructor(private themeService: ThemeService, private router: Router) {}
+  constructor(private themeService: ThemeService, private router: Router,
+    private sessionStorage: SessionStorageService) {}
   ngOnInit(): void {
     this.getThemes();
   }
@@ -20,6 +23,11 @@ export class ThemeListComponent implements OnInit {
       this.themes = data;
     });
   }
+
+  logout(){
+    this.sessionStorage.clear();
+  }
+
 
   updateTheme(id: number){
     this.router.navigate(['themes/edit', id]);

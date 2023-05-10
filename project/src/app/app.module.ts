@@ -11,6 +11,10 @@ import { ThemeDetailsComponent } from './theme-details/theme-details.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+import { AllTopicsComponent } from './all-topics/all-topics.component';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +25,17 @@ import { RegisterComponent } from './register/register.component';
     ThemeDetailsComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent,
+    AllTopicsComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxWebstorageModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

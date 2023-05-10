@@ -4,6 +4,9 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -39,11 +42,19 @@ public class Post {
 	// many to one
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "topic_id")
+//	@JsonIgnore
+//	@JsonIgnoreProperties({"postedIn"})
+//	@JsonIgnoreProperties(value="topic_id", allowSetters = true)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Topic postedIn;
 
 	// many to one
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
+//	@JsonIgnore
+//	@JsonIgnoreProperties({"postPostedBy"})
+//	@JsonIgnoreProperties(value="user_id", allowSetters = true)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private User postPostedBy;
 
 	// CONSTRUCTOR
