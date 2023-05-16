@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team.forum.models.Theme;
@@ -59,9 +60,9 @@ public class ThemeApi {
 	}
 
 	// Search By themeName
-	@PostMapping("/themes/search")
-	public List<Theme> searchTheme(@RequestBody Theme theme) {
-		return themeService.searchByThemeName(theme.getThemeName());
+	@GetMapping("/themes/search")
+	public List<Theme> searchTheme(@RequestParam String searchKey) {
+		return themeService.searchByThemeName(searchKey);
 	}
 
 	// READ ALL THEMES TOPICS

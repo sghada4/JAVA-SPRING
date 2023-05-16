@@ -52,7 +52,7 @@ public class ThemeService {
 
 	// Search by themeName
 	public List<Theme> searchByThemeName(String themeName) {
-		return themeRepository.findByThemeName(themeName);
+		return themeRepository.findByThemeNameContainingIgnoreCase(themeName);
 	}
 
 }

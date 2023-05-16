@@ -20,6 +20,7 @@ export class CreateThemeComponent implements OnInit {
     image: '',
     themePostedBy: null,
     topics: [],
+    createdAt: null
   };
   userId = this.sessionStorage.retrieve('userId');
   user: User;

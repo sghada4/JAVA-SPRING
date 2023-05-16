@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team.forum.models.Post;
-import com.team.forum.models.Theme;
 import com.team.forum.models.Topic;
+import com.team.forum.models.User;
 import com.team.forum.services.TopicService;
+import com.team.forum.services.UserService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -25,6 +26,9 @@ public class TopicApi {
 
 	@Autowired
 	private TopicService topicService;
+
+	@Autowired
+	private UserService userService;
 
 	// READ ALL
 	@GetMapping("/topics")
@@ -45,7 +49,7 @@ public class TopicApi {
 		return topicService.findTopic(id);
 	}
 
-	// READ ALL THEMES TOPICS
+	// READ ALL POSTS TOPIC
 	@GetMapping("/topics/posts/{id}")
 	public List<Post> showTopicPosts(@PathVariable("id") Long id) {
 
@@ -71,4 +75,53 @@ public class TopicApi {
 	public List<Topic> searchTopic(@RequestBody Topic topic) {
 		return topicService.searchByTopicName(topic.getTopicName());
 	}
+
+	// Join topic
+	@GetMapping("/topics/joinTopic/{topicId}/{userId}")
+	public List<User> addToList(@PathVariable("topicId") Long topicId, @PathVariable("userId") Long userId) {
+
+		// find user from the DB using id
+		User loggedUser = userService.findUserById(userId);
+
+		// grab the selected baby from the DB
+		Topic thisTopic = topicService.findTopic(topicId);
+
+		// make many to many connection
+		thisTopic.getJoinedUsers().add(loggedUser);
+
+		// don't forget to save to DB
+		Topic updatedTopic = topicService.updateTopic(topicId, thisTopic);
+
+		return updatedTopic.getJoinedUsers();
+	}
+
+	// Leave topic
+	@GetMapping("/topics/leaveTopic/{topicId}/{userId}")
+	public List<User> removeFromList(@PathVariable("topicId") Long topicId, @PathVariable("userId") Long userId) {
+
+		// find user from the DB using id
+		User loggedUser = userService.findUserById(userId);
+
+		// grab the selected baby from the DB
+		Topic thisTopic = topicService.findTopic(topicId);
+
+		// make many to many connection
+		thisTopic.getJoinedUsers().remove(loggedUser);
+
+		// don't forget to save to DB
+		Topic updatedTopic = topicService.updateTopic(topicId, thisTopic);
+
+		return updatedTopic.getJoinedUsers();
+
+	}
+	
+	// get list of joinedUsers
+		@GetMapping("/topics/joinTopic/{topicId}")
+		public List<User> getJoinedUsers(@PathVariable("topicId") Long topicId) {
+
+			// grab the selected topic from the DB
+			Topic thisTopic = topicService.findTopic(topicId);
+
+			return thisTopic.getJoinedUsers();
+		}
 }

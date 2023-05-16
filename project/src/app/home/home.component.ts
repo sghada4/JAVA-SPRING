@@ -25,6 +25,14 @@ export class HomeComponent implements OnInit {
   }
 
 
+  searchByKeyword(searchkeyword :any) {
+    console.log(searchkeyword);
+     this.themes = [];
+     this.themeService.searchByThemeName(searchkeyword).subscribe((data) => {
+      this.themes = data;
+    });
+  }
+
   logout(){
     this.sessionStorage.clear();
   }

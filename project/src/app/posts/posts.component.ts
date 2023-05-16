@@ -21,6 +21,7 @@ export class PostsComponent implements OnInit {
     content: '',
     postPostedBy: null,
     postedIn: null,
+    createdAt: null
   };
   userId = this.sessionStorage.retrieve('userId');
   topics: Topic[];
@@ -44,6 +45,7 @@ export class PostsComponent implements OnInit {
     this.getLoggedUser();
     this.id = this.route.snapshot.params['id'];
     this.topic = new Topic();
+    
     this.topicService.getPostsTopicById(this.id).subscribe(
       (data) => {
         this.posts = data;
@@ -53,6 +55,7 @@ export class PostsComponent implements OnInit {
         console.log(error);
       }
     );
+
     this.topicService.getTopicById(this.id).subscribe(
       (data) => {
         this.topic = data;
@@ -118,5 +121,17 @@ export class PostsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  deletePost(id: number){
+    this.postService.deletePost(id).subscribe(data=>{
+      // this.getThemes();
+      //this.router.navigate([`/topic/${this.topic.id}`]);
+      location.reload();
+    }, error=>{
+      console.log(error);
+      this.router.navigate([`/topic/${this.topic.id}`]);
+    })
+    
   }
 }

@@ -5,7 +5,8 @@ export class Topic {
   id: number;
   topicName: string;
   topicPostedBy: User | null;
+  joinedUsers: User[];
   theme: Theme | null;
-  // createdAt: Date;
+  createdAt: Date | null;
   // updatedAt: Date;
 }

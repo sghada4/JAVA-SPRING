@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -27,6 +28,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "topics")
+
 public class Topic {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,8 +58,8 @@ public class Topic {
 	@JoinColumn(name = "user_id")
 //	@JsonIgnore
 //	@JsonIgnoreProperties({"topicPostedBy"})
-//	@JsonIgnoreProperties(value="user_id", allowSetters = true)
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "fieldHandler"})
+//	@JsonProperty(access = Access.READ_ONLY)
 	private User topicPostedBy;
 
 	// many to one
@@ -75,7 +77,8 @@ public class Topic {
 //	@JsonIgnore
 //	@JsonIgnoreProperties({"joinedUsers"})
 //	@JsonIgnoreProperties(value="topic_id", allowSetters = true)
-	@JsonProperty(access = Access.WRITE_ONLY)
+	//@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "fieldHandler"})
 	private List<User> joinedUsers;
 
 	// CONSTRUCTOR

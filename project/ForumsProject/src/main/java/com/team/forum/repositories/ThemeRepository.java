@@ -18,5 +18,7 @@ public interface ThemeRepository extends JpaRepository<Theme, Long> {
 		List<Theme> findByOrderByThemeNameAsc();
 
 		//search by themeName
-		List<Theme> findByThemeName(String themeName);
+		//List<Theme> findByThemeName(String themeName);
+		
+		List<Theme> findByThemeNameContainingIgnoreCase(String searchKey);
 }

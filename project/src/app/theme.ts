@@ -8,6 +8,7 @@ export class Theme {
     description: string;
     themePostedBy: User | null;
     topics: Topic[] ;
+    createdAt: Date | null;
     // createdAt: Date;
     // updatedAt: Date;
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -54,7 +55,8 @@ public class Post {
 //	@JsonIgnore
 //	@JsonIgnoreProperties({"postPostedBy"})
 //	@JsonIgnoreProperties(value="user_id", allowSetters = true)
-	@JsonProperty(access = Access.WRITE_ONLY)
+//	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "fieldHandler"})
 	private User postPostedBy;
 
 	// CONSTRUCTOR

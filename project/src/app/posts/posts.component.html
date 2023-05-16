@@ -50,19 +50,20 @@
 
 
 
-            <div class="post-author d-flex align-items-center">
-              <img src="${Theme.image }" class="rounded-circle flex-shrink-0" alt="">
+            
+              <!-- <img *ngIf="topic.theme" src="{{topic.theme.image }}" class="rounded-circle flex-shrink-0" alt=""> -->
               <div>
-                <h4>{{topic.topicName}}</h4>
-                <div class="social-links">
+                <h1 style="color: #0EA2BD;">{{topic.topicName}}</h1>
+                <!-- <h5>{{topic.joinedUsers.length}} Members</h5> -->
+                <!-- <div class="social-links">
                   <a href="https://twitters.com/#"><i class="bi bi-twitter"></i></a>
                   <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
                   <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
-                </div>
-                <p>
-                    Theme.description
+                </div> -->
+                <p *ngIf="topic.theme">
+                    {{topic.theme.description}}
                 </p>
-              </div>
+              
             </div><!-- End post author -->
 
             <div class="comments">
@@ -71,10 +72,20 @@
 
               <div id="comment-1" class="comment" *ngFor="let post of posts">
                 <div class="d-flex">
-                  <div class="comment-img"><img src="../../../assets/img/blog/comments-1.jpg" alt=""></div>
+                  <!-- <div class="comment-img"><img src="../../../assets/img/blog/comments-1.jpg" alt=""></div> -->
                   <div>
-                    <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                    <time datetime="2020-01-01">01 Jan,2022</time>
+                    <h5><a href="" *ngIf="post.postPostedBy">{{post.postPostedBy.userName}}</a> 
+                      <!-- <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a> -->
+                    </h5>
+                    <time datetime="2020-01-01">{{post.createdAt | date:'dd/MM/yyyy'}}</time>
+                    <div *ngIf="post.postPostedBy">
+                    <button *ngIf="post.postPostedBy.id === userId"
+                      class="btn btn-outline-danger"
+                      style="margin-right: 10px"
+                      (click)="deletePost(post.id)"
+                    >
+                      Delete
+                    </button></div>
                     <p>
                       {{post.content}}
                     </p>
@@ -169,19 +180,10 @@
               </div><!-- End sidebar recent posts-->
 
               <div class="sidebar-item tags">
-                <h3 class="sidebar-title">Tags</h3>
-                <ul class="mt-3">
-                  <li><a href="#">App</a></li>
-                  <li><a href="#">IT</a></li>
-                  <li><a href="#">Business</a></li>
-                  <li><a href="#">Mac</a></li>
-                  <li><a href="#">Design</a></li>
-                  <li><a href="#">Office</a></li>
-                  <li><a href="#">Creative</a></li>
-                  <li><a href="#">Studio</a></li>
-                  <li><a href="#">Smart</a></li>
-                  <li><a href="#">Tips</a></li>
-                  <li><a href="#">Marketing</a></li>
+                <h3 class="sidebar-title">Topics</h3>
+                <ul class="mt-3" >
+                  <li ><a href="#" *ngFor="let topic of topics">{{topic.topicName}}</a></li>
+                  
                 </ul>
               </div><!-- End sidebar tags-->
 

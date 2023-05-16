@@ -6,4 +6,5 @@ export class Post {
   content: string;
   postedIn: Topic | null;
   postPostedBy: User | null;
+  createdAt: Date |null;
 }

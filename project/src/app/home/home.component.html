@@ -21,9 +21,15 @@
           <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
           
         </ul>
-        <form class="form-inline " style="display: flex;">
+        <!-- <form class="form-inline " style="display: flex;">
           <input class="form-control " type="search" placeholder="Search">
           <button class="btn btn-outline-success " type="submit"><i class="bi bi-search"></i></button>
+        </form> -->
+        <form class="form-inline " style="display: flex;">
+          
+          <input class="form-control " type="search" #searchkeyword (input)="searchByKeyword(searchkeyword.value)" name="searchKey" id="searchKey"
+            placeholder="Search">
+            <button class="btn btn-outline-success " type="submit"><i class="bi bi-search"></i></button>
         </form>
         <!-- <i class="bi bi-list mobile-nav-toggle d-none"></i> -->
       </nav><!-- .navbar -->
@@ -138,9 +144,9 @@
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" *ngFor="let theme of themes">
             <div class="service-item">
               <div class="img" >
-                <img src="{{theme.image}}" class="img-fluid" alt="">
+                <img src="{{theme.image}}" class="img-fluid" alt="" style="width: 500px; height: 300px;">
               </div>
-              <div class="details position-relative">
+              <div class="details position-relative" style="height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center;" >
                 <div class="icon">
                   <i >{{theme.themeName[0]}}</i>
                 </div>

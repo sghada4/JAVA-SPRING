@@ -41,4 +41,9 @@ export class ThemeService {
   deleteTheme(id: number): Observable<Theme>{
     return this.httpClient.delete<Theme>(`${this.baseURL}/${id}`);
   }
+
+  //Search by themeName
+  searchByThemeName(themeName: String): Observable<Theme[]>{
+    return this.httpClient.get<Theme[]>(`${this.baseURL}/search?searchKey=${themeName}`);
+  }
 }
