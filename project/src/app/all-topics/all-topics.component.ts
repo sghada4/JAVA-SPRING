@@ -30,7 +30,7 @@ export class AllTopicsComponent implements OnInit {
   id: number;
   user: User;
   joinedUsers: User[];
-  
+  test:Boolean=true;
 
   constructor(
     private topicService: TopicService,
@@ -94,7 +94,8 @@ export class AllTopicsComponent implements OnInit {
         this.topic=response;
         this.themeService.getTopicsThemeById(this.id).subscribe(data=>{
           this.topics = data;
-          
+          // topicForm.reset();
+          location.reload();
         }, error=>{
           this.router.navigate([`/themes/show/${this.theme.id}`]);
           console.log(error);
@@ -143,12 +144,14 @@ export class AllTopicsComponent implements OnInit {
       (response: User[]) => {
           // this.joinedUsers = response;
           this.topic.joinedUsers = response;
+          this.test=false;
           console.log(this.topic.joinedUsers);
+          // location.reload();
           
-        this.router.navigate([`/themes/show/${this.theme.id}`]);
+          // this.router.navigate([`/topic/${this.topic.id}`]);
       },
       (error: Error) => {
-        this.router.navigate([`/themes/show/${this.theme.id}`]);
+        // this.router.navigate([`/topic/${this.topic.id}`]);
       }
     );
   }
@@ -157,11 +160,13 @@ export class AllTopicsComponent implements OnInit {
     this.topicService.getRemainingJoinedUsers(topicId, userId).subscribe(
       (response: User[]) => {
           this.joinedUsers = response;
+          this.test=true;
           // console.log(this.joinedUsers);
-        this.router.navigate([`/themes/show/${this.theme.id}`]);
+          // this.router.navigate([``]);
+          // location.reload();
       },
       (error: Error) => {
-        this.router.navigate([`/themes/show/${this.theme.id}`]);
+        // this.router.navigate([``]);
       }
     );
   }

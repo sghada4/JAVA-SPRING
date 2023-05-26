@@ -85,6 +85,9 @@ public class TopicApi {
 
 		// grab the selected baby from the DB
 		Topic thisTopic = topicService.findTopic(topicId);
+		if(thisTopic.getJoinedUsers().contains(loggedUser)) {
+			return thisTopic.getJoinedUsers();
+		}
 
 		// make many to many connection
 		thisTopic.getJoinedUsers().add(loggedUser);
@@ -104,6 +107,9 @@ public class TopicApi {
 
 		// grab the selected baby from the DB
 		Topic thisTopic = topicService.findTopic(topicId);
+		if(!thisTopic.getJoinedUsers().contains(loggedUser)) {
+			return thisTopic.getJoinedUsers();
+		}
 
 		// make many to many connection
 		thisTopic.getJoinedUsers().remove(loggedUser);

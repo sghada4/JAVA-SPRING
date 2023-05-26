@@ -89,54 +89,37 @@
                   <div class="icon" style="background: #0ea2bd;  border-radius: 50%; width: 50px; height: 50px; text-align: center; display: flex;
                   align-items: center; 
                   justify-content: center;">
-                    <i style="color: white; font-size: large;">{{topic.topicName[0]}}</i>
-                </div>
+                    <i style="color: white; font-size: large;" *ngIf="topic.topicPostedBy">{{topic.topicPostedBy.userName[0]}}</i>
+                  </div>
               </div>
                 <!-- <div class="icon">
                   <i >{{ topic.topicName[0] }}</i>
                 </div> -->
                 <div>
-                  <h5 *ngIf="topic.topicPostedBy">
+                  <h3 *ngIf="topic.topicPostedBy">
                     {{ topic.topicPostedBy.userName}}
 
-                    <!-- <div *ngIf="!user in joinedUsers" (click)="getJoinedUsers()"> -->
-<!-- 
-                    <a
-                      class="reply"
-                      href="/themes/show/{{ theme.id }}"
-                      (click)="getJoinedUsers(topic.id, user.id)"
-                      ><i class="bi bi-reply-fill"></i> Join</a
-                    >
-
-                    <a
-                      class="reply"
-                      href="/themes/show/{{ theme.id }}"
-                      (click)="getRemainingJoinedUsers(topic.id, user.id)"
-                      ><i class="bi bi-reply-fill"></i> Leave</a
-                    > -->
-
-                    <!-- </div> -->
-                    <!-- <div *ngIf="user in joinedUsers" (click)="getRemainingJoinedUsers()"> -->
-
-                    <!-- <a class="reply" href="/themes/show/{{theme.id}}"><i class="bi bi-reply-fill"></i> Leave</a> -->
-                    <!-- </div> -->
                     
 
 
                     
-                  </h5>
-                  <time datetime="2020-01-01" *ngIf="topic.createdAt">{{topic.createdAt | date:'dd/MM/yyyy'}}</time>
-                  <p style="margin-bottom: 20px;">
+                    <time datetime="2020-01-01" style="font-size:medium;" *ngIf="topic.createdAt">{{topic.createdAt | date:'dd, MMM, yyyy'}}</time>
+                  </h3>
+                  <p style="margin-bottom: 20px; font-size:large;">
                     <a href="topic/{{ topic.id }}">{{ topic.topicName }}</a>
                     <!-- ( {{topic.joinedUsers.length}} )Members -->
                   </p>
                   <div class="row d-flex justify-content-end">
                     <div class="col-8 d-flex justify-content-between" >
                       
-                  <button *ngIf="user in topic.joinedUsers == false" class="btn btn-outline-success" style="margin-right: 20px;" (click)="getJoinedUsers(topic.id, user.id)"> Join
+                  <!-- <button *ngIf="test"  class="btn btn-outline-success" style="margin-right: 20px;" (click)="getJoinedUsers(topic.id, user.id)" > Join 
                   </button>
-                  <button *ngIf="user in topic.joinedUsers == true"  class="btn btn-outline-info" (click)="getRemainingJoinedUsers(topic.id, user.id)"> Leave
-                  </button></div>
+                  <button *ngIf="!test "  class="btn btn-outline-info" (click)="getRemainingJoinedUsers(topic.id, user.id)"> Leave
+                  </button> -->
+                  <button  class="btn btn-outline-success" style="margin-right: 20px;" (click)="getJoinedUsers(topic.id, user.id)" >  
+                    <a href="topic/{{ topic.id }}">Join</a>
+                  </button>
+                </div>
                   <div *ngIf="topic.topicPostedBy" class="col-4 ">
                     <button *ngIf="topic.topicPostedBy.id === userId"
                       class="btn btn-outline-danger"
@@ -209,10 +192,10 @@
                   <div>
                     <h4>
                       <a href="themes/show/{{ theme.id }}"
-                        >{{theme.themeName}} <span>({{topic.joinedUsers.length}})</span></a
+                        >{{theme.themeName}} </a
                       >
                     </h4>
-                    <time datetime="2020-01-01">{{theme.createdAt | date:'dd/MM/yyyy'}}</time>
+                    <time datetime="2020-01-01">{{theme.createdAt | date:'dd, MMM, yyyy'}}</time>
                   </div>
                 </div>
                 <!-- End recent post item-->

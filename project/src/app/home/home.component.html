@@ -263,54 +263,54 @@
           <div class="col-lg-4" data-aos="fade-up">
             <div class="post-box">
               <!-- theme image -->
-              <div class="post-img"><img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt=""></div>
+              <div class="post-img"><img src="{{themes[1].image}}" class="img-fluid" alt="" style="height: 315px;"></div>
               <div class="meta">
                 <!-- topic created date -->
-                <span class="post-date">Tue, December 12</span>
+                <span class="post-date">{{themes[1].createdAt | date:'EEE, MMM, yyyy' }}</span>
                 <!-- owner of the topic -->
-                <span class="post-author"> / Julia Parker</span>
+                <!-- <span class="post-author"> {{themes[1].themeName}}</span> -->
               </div>
               <!-- topic name -->
-              <h3 class="post-title">We have to change this section!!!</h3>
+              <h3 class="post-title">Cancer</h3>
               <!-- <p>Illum voluptas ab enim placeat. Adipisci enim velit nulla. Vel omnis laudantium. Asperiores eum ipsa est officiis. Modi cupiditate exercitationem qui magni est...</p> -->
               <!-- join or leave button -->
-              <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <!-- <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a> -->
             </div>
           </div>
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
             <div class="post-box">
               <!-- theme image -->
-              <div class="post-img"><img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt=""></div>
+              <div class="post-img"><img src="{{themes[0].image}}" class="img-fluid" alt="" style="height: 315px;"></div>
               <div class="meta">
                 <!-- topic created date -->
-                <span class="post-date">Tue, December 12</span>
+                <span class="post-date">{{themes[1].createdAt | date:'EEE, MMM, yyyy' }}</span>
                 <!-- owner of the topic -->
-                <span class="post-author"> / Julia Parker</span>
+                <!-- <span class="post-author"> / Julia Parker</span> -->
               </div>
               <!-- topic name -->
-              <h3 class="post-title">We have to change this section!!!</h3>
+              <h3 class="post-title">Artificial Intelligence in Cybersecurity</h3>
               <!-- <p>Illum voluptas ab enim placeat. Adipisci enim velit nulla. Vel omnis laudantium. Asperiores eum ipsa est officiis. Modi cupiditate exercitationem qui magni est...</p> -->
               <!-- join or leave button -->
-              <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <!-- <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a> -->
             </div>
           </div>
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
             <div class="post-box">
               <!-- theme image -->
-              <div class="post-img"><img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt=""></div>
+              <div class="post-img"><img src="{{themes[2].image}}" class="img-fluid" alt="" style="height: 315px;"></div>
               <div class="meta">
                 <!-- topic created date -->
-                <span class="post-date">Tue, December 12</span>
+                <span class="post-date">{{themes[1].createdAt | date:'EEE, MMM, yyyy' }}</span>
                 <!-- owner of the topic -->
-                <span class="post-author"> / Julia Parker</span>
+                <!-- <span class="post-author"> / Julia Parker</span> -->
               </div>
               <!-- topic name -->
-              <h3 class="post-title">We have to change this section!!!</h3>
+              <h3 class="post-title">Reinforced concrete</h3>
               <!-- <p>Illum voluptas ab enim placeat. Adipisci enim velit nulla. Vel omnis laudantium. Asperiores eum ipsa est officiis. Modi cupiditate exercitationem qui magni est...</p> -->
               <!-- join or leave button -->
-              <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <!-- <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a> -->
             </div>
           </div>
 
@@ -318,7 +318,8 @@
 
       </div>
 
-    </section><!-- End Recent Blog Posts Section -->
+    </section>
+    <!-- End Recent Blog Posts Section -->
 
     <!-- ======= Contact Section ======= -->
     

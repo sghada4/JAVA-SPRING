@@ -49,4 +49,10 @@ public class TopicService {
 	public List<Topic> searchByTopicName(String topicName) {
 		return topicRepository.findByTopicName(topicName);
 	}
+	
+	//Most 3 joined topics
+//	public List<Topic> mostJoinedTopics(){
+//		List<Topic> mostJoined = topicRepository.findTop3ByCountIdOrderByCountDesc();
+//		return mostJoined;
+//	}
 }

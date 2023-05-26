@@ -14,4 +14,7 @@ public interface TopicRepository extends CrudRepository<Topic, Long> {
 
 	// search by topicName
 	List<Topic> findByTopicName(String topicName);
+	
+//	List<Topic> findTop3ByCountIdOrderByCountDesc();
+
 }

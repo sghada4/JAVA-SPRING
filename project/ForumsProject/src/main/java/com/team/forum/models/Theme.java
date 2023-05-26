@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -55,7 +56,8 @@ public class Theme {
 //	@JsonIgnore
 //	@JsonIgnoreProperties({"themePostedBy"})
 //	@JsonIgnoreProperties(value="user_id", allowSetters = true)
-	@JsonProperty(access = Access.WRITE_ONLY)
+//	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "fieldHandler"})
 	private User themePostedBy;
 
 	// one to many

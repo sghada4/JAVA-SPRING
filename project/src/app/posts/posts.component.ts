@@ -30,7 +30,8 @@ export class PostsComponent implements OnInit {
   id: number;
   user: User;
   themes: Theme[];
-  
+  joinedUsers: User[];
+
   constructor(
     private topicService: TopicService,
     private userService: UserService,
@@ -43,6 +44,7 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.getThemes();
     this.getLoggedUser();
+    this.getTopics();
     this.id = this.route.snapshot.params['id'];
     this.topic = new Topic();
     
@@ -66,9 +68,17 @@ export class PostsComponent implements OnInit {
     );
   }
 
+  
+
   private getThemes() {
     this.themeService.getThemesList().subscribe((data) => {
       this.themes = data;
+    });
+  }
+
+  private getTopics() {
+    this.topicService.getTopicsList().subscribe((data) => {
+      this.topics = data;
     });
   }
 
@@ -79,13 +89,8 @@ export class PostsComponent implements OnInit {
   savePost() {
     this.post.postPostedBy = this.user;
     this.post.postedIn = this.topic;
-    // console.log(this.user);
-
-    // const themeFormData = this.prepareFormData(this.theme)
     this.postService.createPost(this.post).subscribe(
       (response: Post) => {
-        // console.log(response);
-        // this.theme.topics.push(response);
         this.topicService.getPostsTopicById(this.id).subscribe(
           (data) => {
             this.posts = data;
@@ -96,11 +101,8 @@ export class PostsComponent implements OnInit {
           }
         );
         this.router.navigate([`/topic/${this.topic.id}`]);
-
-        // themeForm.reset();
       },
       (error: Error) => {
-        // console.log("=========================",error);
         this.router.navigate([`/topic/${this.topic.id}`]);
       }
     );
@@ -133,5 +135,20 @@ export class PostsComponent implements OnInit {
       this.router.navigate([`/topic/${this.topic.id}`]);
     })
     
+  }
+
+  getRemainingJoinedUsers(topicId: number, userId: number){
+    this.topicService.getRemainingJoinedUsers(topicId, userId).subscribe(
+      (response: User[]) => {
+          this.joinedUsers = response;
+          // this.test=true;
+          // console.log(this.joinedUsers);
+          this.router.navigate([``]);
+          // location.reload();
+      },
+      (error: Error) => {
+        // this.router.navigate([``]);
+      }
+    );
   }
 }
