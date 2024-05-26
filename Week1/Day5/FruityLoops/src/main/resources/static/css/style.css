@@ -1,0 +1,17 @@
+*{
+	margin: auto;
+}
+h1 {
+	margin-left:695px;
+    color: #FFB6C2;
+}
+table{
+	margin-top:20px;
+	background: #FFB6C2;
+	padding: 10px;
+	width: 40%
+}
+tr{
+	background: white;
+}
+
