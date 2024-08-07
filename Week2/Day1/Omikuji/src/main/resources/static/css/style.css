@@ -1,0 +1,17 @@
+*{
+	margin: auto;
+}
+p{
+	background: #9FC5F8;
+	padding: 20px;
+	width: 150px;
+	margin-top: 20px;
+	border: solid black 2px;
+}
+h1{
+	margin-left: 620px;
+}
+
+a{
+	margin-left: 740px;
+}
